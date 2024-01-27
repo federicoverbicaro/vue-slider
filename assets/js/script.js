@@ -4,7 +4,7 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
-
+            scroll: null,
             immagineCorrente: 0,
             slides: [
                 {
@@ -32,7 +32,7 @@ createApp({
                     title: "Marvel's Avengers",
                     text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
                 },
-               
+
             ],
         }
     },
@@ -41,25 +41,36 @@ createApp({
 
         frecciaSu() {
 
-            if(this.immagineCorrente === 0 ){
-              this.immagineCorrente = Object.keys(this.slides).length  - 1
-            }else{
+            if (this.immagineCorrente === 0) {
+                this.immagineCorrente = Object.keys(this.slides).length - 1
+            } else {
                 this.immagineCorrente = this.immagineCorrente - 1
             }
-         
+
 
         },
-        frecciaGiu(){
-          
-            if(this.immagineCorrente === Object.keys(this.slides).length - 1  ){
-              this.immagineCorrente = 0 
-            }else{
-                this.immagineCorrente = this.immagineCorrente + 1 
-            }
-        }
-        
+        frecciaGiu() {
 
+            if (this.immagineCorrente === Object.keys(this.slides).length - 1) {
+                this.immagineCorrente = 0
+            } else {
+                this.immagineCorrente = this.immagineCorrente + 1
+            }
+        },
+
+        changeImg(index) {
+            this.immagineCorrente = index
+        },
+        slideAttivo(){
+            this.scroll = setInterval( () =>{
+                this.frecciaGiu()
+            },3000) 
+
+        },
+        stopSlide(){
+            clearInterval(this.scroll)
+        },
 
     }
-    
+
 }).mount('#app')

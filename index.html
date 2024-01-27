@@ -16,29 +16,29 @@
         <div class="container">
             <div class="slider-wrapper" tabindex="0">
 
-                <div class="item">
+                <div class="item" @mouseover="stopSlide" @mouseleave="slideAttivo">
 
                     <!-- prendo la prima immagine -->
                     <img :src="slides[immagineCorrente].image" alt="Spiderman" />
                     <div class="text">
-                        
-                        
+
+
                         <h3>{{slides[immagineCorrente].title}}</h3>
 
                         <p> {{slides[immagineCorrente].text}}
                         </p>
                     </div>
                 </div>
-                
+
 
                 <div class="thumbs">
                     <div @click="frecciaSu" class="prev"></div>
-                    <div @click="frecciaGiu"  class="next"></div>
+                    <div @click="frecciaGiu" class="next"></div>
 
 
                     <!-- cicliamo il primo contenitore per la leghts dell'array -->
                     <div v-for=" ( slide, index ) in slides" class="thumb active">
-                        <img :src="slide.image" alt="Svezia" />
+                        <img @click="changeImg(index)" :src="slide.image" alt="immagini di film" />
                     </div>
 
                 </div>
